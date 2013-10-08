@@ -61,10 +61,8 @@ def avviso(nome, porta):
     testo2 = "Aprite la porta "+ annunciPorte[porta]
     testo = testo.replace(" ","+")
     testo2 = testo2.replace(" ","+")
-    cmd = "mplayer -http-header-fields 'User-Agent: Mozilla' \"http://translate.google.com/translate_tts?ie=UTF-8&tl="+lingua+"&q="+testo+"\" > /dev/n
-ll 2>/dev/null"
-    cmd2 = "mplayer -http-header-fields 'User-Agent: Mozilla' \"http://translate.google.com/translate_tts?ie=UTF-8&tl="+lingua+"&q="+testo2+"\" > /dev
-null 2>/dev/null"
+    cmd = "mplayer -http-header-fields 'User-Agent: Mozilla' \"http://translate.google.com/translate_tts?ie=UTF-8&tl="+lingua+"&q="+testo+"\" > /dev/null 2>/dev/null"
+    cmd2 = "mplayer -http-header-fields 'User-Agent: Mozilla' \"http://translate.google.com/translate_tts?ie=UTF-8&tl="+lingua+"&q="+testo2+"\" > /dev/null 2>/dev/null"
     cmdx = "("+cmd+"; "+cmd2+") &"
     log("Esecuzione comando "+cmdx)
     os.system(cmdx)
