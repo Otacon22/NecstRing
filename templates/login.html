@@ -1,0 +1,27 @@
+$def with (form, type, feedback)
+
+<!doctype html>
+
+<head>
+	<title>NECSTRinger</title>
+	<link rel="stylesheet" type="text/css" href="/static/style.css"/> 
+</head>
+
+<body>
+
+<div id="wrapper">
+	<img id="logo" src="static/logo.png">
+	<h1>Campanello del NECSTLab</h1>
+		
+	$if feedback != None:
+		<p class="$type">$feedback</p>
+
+	<p>Per accedere, usa le stesse credenziali della rete del laboratorio.</p>
+
+	<form method="POST">
+		$:form.render()
+	</form>
+</div>
+
+</body>
+
