@@ -12,8 +12,6 @@ from string import letters
 import hashlib
 import base64
 
-#if not radiusIp: radiusIp = raw_input("Insert Radius server address: ")
-#if not radiusSecret: radiusSecret = getpass("Insert Radius server password: ")
 
 lastrequest = 0
 lastexecutions = {}
@@ -27,7 +25,7 @@ def log(text):
     logFd.flush()
 
 def authenticate_from_file(uname, passwd):
-    f = open('users.txt', 'r')
+    f = open(usersfile, 'r')
     for l in f:
         t = l.split(' ')
         sha = hashlib.sha1()
@@ -50,7 +48,7 @@ def authenticate(uname, passwd):
     if r.authenticate(uname, passwd):
         return True
     else:
-		return authenticate_from_file(uname, passwd)
+        return authenticate_from_file(uname, passwd)
 
 def avviso(nome, porta):
     lingua = "it"
@@ -59,11 +57,17 @@ def avviso(nome, porta):
         if not (l in validChars):
             log("Warning: OS command injection in name")
             return
-
-    testo = "E' in attesa alla porta " + nome + ". Andate ad aprire la porta "+ annunciPorte[porta]
+    testo = "E' in attesa alla porta " + nome
+    testo2 = "Aprite la porta "+ annunciPorte[porta]
     testo = testo.replace(" ","+")
-    os.system("mplayer -http-header-fields 'User-Agent: Mozilla' \"http://translate.google.com/translate_tts?ie=UTF-8&tl="+lingua+"&q="+testo+"\" > /dev/null 2> /dev/null &")
-
+    testo2 = testo2.replace(" ","+")
+    cmd = "mplayer -http-header-fields 'User-Agent: Mozilla' \"http://translate.google.com/translate_tts?ie=UTF-8&tl="+lingua+"&q="+testo+"\" > /dev/n
+ll 2>/dev/null"
+    cmd2 = "mplayer -http-header-fields 'User-Agent: Mozilla' \"http://translate.google.com/translate_tts?ie=UTF-8&tl="+lingua+"&q="+testo2+"\" > /dev
+null 2>/dev/null"
+    cmdx = "("+cmd+"; "+cmd2+") &"
+    log("Esecuzione comando "+cmdx)
+    os.system(cmdx)
 
 urls = (
     '/(.*)', 'RingPage'

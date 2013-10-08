@@ -29,3 +29,4 @@ elif sys.argv[1] == 'del':
 	del_user(sys.argv[2])
 else:
 	print sys.argv[0] + " {add, del} username [password]"
+
