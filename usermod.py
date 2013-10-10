@@ -10,7 +10,7 @@ def add_user(user, password):
 	sha.update("c5d22d1f16b8")
 
 	with open("users.txt", "a") as users:
-		users.write(sys.argv[1] + " " + base64.b64encode(sha.digest()) + '\n')
+		users.write(user + " " + base64.b64encode(sha.digest()) + '\n')
 
 def del_user(user):
 	f = open("users.txt", "r")
