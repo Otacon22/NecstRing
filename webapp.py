@@ -18,6 +18,8 @@ lastexecutions = {}
 validChars = letters+" "
 logFd = open(logfile, "a")
 
+web.config.debug = False
+
 salt = "c5d22d1f16b8"
 
 def log(text):
